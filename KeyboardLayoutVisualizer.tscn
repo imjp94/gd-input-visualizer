@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://script/KeyboardLayoutVisualizer.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_left = -0.0469631
+anchor_top = -0.0199542
+anchor_right = 0.953037
+anchor_bottom = 0.980046
+margin_left = 48.0902
+margin_top = 11.9725
+margin_right = 59.0901
+margin_bottom = -289.028
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+src_path = "res://assets/keyboard_layouts/keyboard-ansi-104.json"
+key_unit_size = 46
