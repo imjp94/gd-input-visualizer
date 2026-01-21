@@ -1,8 +1,7 @@
 @tool
 class_name KeyboardLayoutVisualizer extends Control
 
-#@export_file_path("json") var src_path = "res://asset/keyboard_layouts/keyboard-default.json": set = set_src_path
-@export_file("json") var src_path = "res://asset/keyboard_layouts/keyboard-default.json": set = set_src_path
+@export_file_path("*.json") var src_path = "res://asset/keyboard_layouts/keyboard-default.json": set = set_src_path
 
 @export var key_unit_size = 10: set = set_key_unit_size
 
