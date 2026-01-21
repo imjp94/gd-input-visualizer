@@ -1,5 +1,5 @@
-tool
-extends Reference
+@tool
+class_name KeyboardMetadata extends RefCounted
 
 var author = ""
 var backcolor = "#eeeeee"
@@ -10,10 +10,3 @@ var radii = ""
 var switchBrand = ""
 var switchMount = ""
 var switchType = ""
-
-
-func get_class():
-	return "KeyboardMetadata"
-
-func is_class(type):
-	return type == get_class() or .is_class(type)

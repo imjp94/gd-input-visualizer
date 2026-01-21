@@ -1,8 +1,7 @@
-tool
-extends Reference
-const Key = preload("Key.gd")
-const KeyboardMetadata = preload("KeyboardMetadata.gd")
-const Keyboard = preload("Keyboard.gd")
+@tool
+class_name KeyboardSerial extends RefCounted
+
+const KeyboardKey2 = preload("uid://dw1841enimiqo")
 
 # Map from serialized label position to normalized position,
 # depending on the alignment flags.
@@ -30,14 +29,14 @@ static func copy(o):
 		return o
 	elif o is Resource:
 		return o.duplicate(true)
-	elif o is Key:
-		var new_key = Key.new()
+	elif o is KeyboardKey2:
+		var new_key = KeyboardKey2.new()
 		for prop in o.get_property_list():
 			# if prop.name == "x":
 			# 	printt(prop.name, copy(o.get(prop.name)))
 			new_key.set(prop.name, copy(o.get(prop.name)))
 		return new_key
-	push_error(str("Unexpected object ", o.get_class()))
+	push_error(str("Unexpected object ", o.get_global_name()))
 	assert(false)
 
 
@@ -54,7 +53,7 @@ static func deserialize(rows):
 		print("Expected array of objects")
 		return
 
-	var current = Key.new()
+	var current = KeyboardKey2.new()
 	var kbd = Keyboard.new()
 	var align = 4
 
@@ -76,15 +75,15 @@ static func deserialize(rows):
 						if i < new_key.labels.size():
 							if not new_key.labels[i]:
 								if i < new_key.textSize.size():
-									new_key.textSize.remove(i)
+									new_key.textSize.remove_at(i)
 								if i < new_key.textColor.size():
-									new_key.textColor.remove(i)
+									new_key.textColor.remove_at(i)
 						if i < new_key.textSize.size():
 							if new_key.textSize[i] == new_key.default.textSize:
-								new_key.textSize.remove(i)
+								new_key.textSize.remove_at(i)
 						if i < new_key.textColor.size():
 							if new_key.textColor[i] == new_key.default.textColor:
-								new_key.textColor.remove(i)
+								new_key.textColor.remove_at(i)
 
 					# Add key
 					kbd.keys.push_back(new_key)
@@ -124,7 +123,7 @@ static func deserialize(rows):
 						current.color = item.c
 					if item.get("t"):
 						var split = item.t.split("\n")
-						if not split[0].empty():
+						if not split[0].is_empty():
 							current.default.textColor = split[0]
 						current.textColor = reorder_labels_in(split, align)
 					if item.get("x"): 
@@ -175,8 +174,10 @@ static func deserialize(rows):
 	return kbd
 
 static func parse(json):
-	var src_json = JSON.parse(json)
-	if src_json.error != OK:
+	var test_json_conv = JSON.new()
+	var json_error := test_json_conv.parse(json)
+	var src_json = test_json_conv.get_data()
+	if json_error != OK:
 		print("Error parsing json at %d: %s" % [src_json.error_line, src_json.error_string])
 		return null
-	return deserialize(src_json.result)
+	return deserialize(src_json)
