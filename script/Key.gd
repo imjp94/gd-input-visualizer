@@ -1,5 +1,5 @@
 @tool
-#class_name KeyboardKey2 
+class_name KeyboardKey
 extends RefCounted
 
 var color = "#cccccc"

@@ -1,3 +1,4 @@
+@tool
 extends Button
 
 var unit_sizes = {

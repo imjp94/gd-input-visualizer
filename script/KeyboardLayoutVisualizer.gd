@@ -1,7 +1,9 @@
 @tool
 class_name KeyboardLayoutVisualizer extends Control
 
-@export var src_path = "res://asset/keyboard_layouts/keyboard-default.json": set = set_src_path
+#@export_file_path("json") var src_path = "res://asset/keyboard_layouts/keyboard-default.json": set = set_src_path
+@export_file("json") var src_path = "res://asset/keyboard_layouts/keyboard-default.json": set = set_src_path
+
 @export var key_unit_size = 10: set = set_key_unit_size
 
 var keyboard
@@ -51,10 +53,8 @@ func load_layout():
 func set_src_path(p):
 	src_path = p
 	load_layout()
-	#update()
 	queue_redraw()
 
 func set_key_unit_size(size):
 	key_unit_size = size
-	#update()
 	queue_redraw()

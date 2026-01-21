@@ -1,8 +1,6 @@
 @tool
 class_name KeyboardSerial extends RefCounted
 
-const KeyboardKey2 = preload("uid://dw1841enimiqo")
-
 # Map from serialized label position to normalized position,
 # depending on the alignment flags.
 const label_map = [
@@ -29,9 +27,12 @@ static func copy(o):
 		return o
 	elif o is Resource:
 		return o.duplicate(true)
-	elif o is KeyboardKey2:
-		var new_key = KeyboardKey2.new()
+	elif o is KeyboardKey:
+		var new_key = KeyboardKey.new()
 		for prop in o.get_property_list():
+			if prop.name == "script":
+				new_key.set(prop.name, o.get(prop.name))
+				continue
 			# if prop.name == "x":
 			# 	printt(prop.name, copy(o.get(prop.name)))
 			new_key.set(prop.name, copy(o.get(prop.name)))
@@ -53,7 +54,7 @@ static func deserialize(rows):
 		print("Expected array of objects")
 		return
 
-	var current = KeyboardKey2.new()
+	var current = KeyboardKey.new()
 	var kbd = Keyboard.new()
 	var align = 4
 
