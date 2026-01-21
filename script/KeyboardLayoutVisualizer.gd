@@ -28,9 +28,7 @@ func _draw():
 			# TODO: set font size
 			if typeof(label) == TYPE_STRING:
 				# TODO: Wrap/clip string in key_rect
-				print(key.textColor)
-				#draw_string(font, label_pos, label, HORIZONTAL_ALIGNMENT_CENTER, 16, (key.textColor[i] if key.textColor else key.default.textColor))
-				draw_string(font, label_pos, label, HORIZONTAL_ALIGNMENT_CENTER, 16)
+				draw_string(font, label_pos, label, HORIZONTAL_ALIGNMENT_CENTER, -1, 16, Color(key.textColor[i] if key.textColor else key.default.textColor) )
 			break # TODO: Handle more than 1 label
 		rect = rect.merge(key_rect)
 	size = rect.size
