@@ -1,19 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene format=3 uid="uid://b8x8gtc6i4ocb"]
 
-[ext_resource path="res://script/KeyboardLayoutVisualizer.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://bbctamqlv5enm" path="res://script/KeyboardLayoutVisualizer.gd" id="1"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1268966640]
+layout_mode = 3
 anchor_left = -0.0469631
 anchor_top = -0.0199542
 anchor_right = 0.953037
 anchor_bottom = 0.980046
-margin_left = 48.0902
-margin_top = 11.9725
-margin_right = 59.0901
-margin_bottom = -289.028
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 48.0902
+offset_top = 11.9725
+offset_right = -68.90991
+offset_bottom = -337.0276
+script = ExtResource("1")
 src_path = "res://assets/keyboard_layouts/keyboard-ansi-104.json"
 key_unit_size = 46

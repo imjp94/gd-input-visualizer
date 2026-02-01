@@ -1,5 +1,6 @@
-tool
-extends Reference
+@tool
+class_name KeyboardKey
+extends RefCounted
 
 var color = "#cccccc"
 var labels = []
@@ -32,9 +33,3 @@ var st = ""
 
 func get_rect():
 	return Rect2(x, y, width, height)
-
-func get_class():
-	return "Key"
-
-func is_class(type):
-	return type == get_class() or .is_class(type)

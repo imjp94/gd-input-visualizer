@@ -1,3 +1,4 @@
+@tool
 extends Button
 
 var unit_sizes = {
@@ -34,7 +35,7 @@ func get_profile(key):
 	var regex = RegEx.new()
 	regex.compile("\b(SA|DSA|DCS|OEM|CHICKLET|FLAT)\b")
 	var result = regex.search_all(key.profile)
-	return result.get_string(0) if not result.empty() else ""
+	return result.get_string(0) if not result.is_empty() else ""
 
 func get_render_params(key, sizes):
 	var parms = {}
